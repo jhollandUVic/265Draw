@@ -124,7 +124,7 @@
 <h2>Application Concepts</h2>
 
 <ul>
-<li>A Sierpinski Carpet is a recursive fractal, where smaller copies of an original shape are drawn around the original to an arbitrary level of recursion.</li>
+<li>A Sierpinski Carpet is a recursive fractal, where smaller copies of a square are drawn around the original square to an arbitrary level of recursion.</li>
 <li>Rotation, scaling, and translation actions are applied to surround the original Sierpinski Carpet with copies or tiles.</li>
 </ul>
 
@@ -133,7 +133,7 @@
 <h3>Recursion Levels</h3>
 
 <ul>
-<li>A recursion level from 0 to 4 is supported. 0 is no recursion; 4 is the practical limit given canvas resolution.</li>
+<li>In this application, recursion levels from 0 to 4 are supported. 0 is no recursion; 4 is the practical limit given canvas resolution.</li>
 </ul>
 
 <h3>Tiling Variations</h3>
@@ -145,7 +145,7 @@
 <li><code>cross</code>: Rotate copies up and down and across from the original.</li>
 </ul>
 
-<h3>Colour</h3>
+<h3>Colour Themes</h3>
 
 <ul>
 <li><code>light</code>, <code>medium</code>, <code>dark</code> themes are supported with colours chosen randomly within each theme.</li>
@@ -180,7 +180,7 @@
 <li><code>dark</code>: Random <code>Dark</code> colours on a light background.</li>
 </ul></li>
 </ul></li>
-<li><p>Two SVG files are created:</p>
+<li><p>Two SVG files are created in the same directory as the application:</p>
 
 <ul>
 <li>A Sierpinski Carpet at the recursion level and with the colour theme requested.
@@ -194,7 +194,7 @@
 </ul></li>
 <li><p>Console Log (all but first line is output):</p>
 
-<pre><code>🌀 &gt; Home: bash sierpinski.sh 3 rotate light
+<pre><code>&gt;&gt;&gt; Home: bash sierpinski.sh 3 rotate light
 *
 * Create a Recursive Sierpinski Carpet with 3 Levels
 python generate_carpet.py 3 light &gt; carpet_3.txt
@@ -232,10 +232,10 @@ sed -i '' 's/none/MidnightBlue/g' carpet_3ST.svg
 <ul>
 <li>Based on <code>generate_tree.py</code></li>
 <li>The algorithm for generating Sierpinski Carpets was found at <a href="http://lodev.org/cgtutor/sierpinski.html">http://lodev.org/cgtutor/sierpinski.html</a></li>
-<li>Can make a Sierpinski Carpet accepting levels of recursion required.</li>
+<li>Makes a Sierpinski Carpet lines file with levels of recursion required.</li>
 </ul>
 
-<p><code>python generate_carpet.py 2 &gt; carpet_2.txt</code> where the first <code>2</code> is the recursion level.</p></li>
+<p><code>python generate_carpet.py 2 &gt; carpet_2.txt</code> where the <code>2</code> is the recursion level.</p></li>
 <li><p><a href="https://github.com/jhollandUVic/265Draw/blob/master/lines_to_svg_colour.py"><code>lines_to_svg_colour.py</code></a></p>
 
 <ul>
@@ -256,7 +256,7 @@ sed -i '' 's/none/MidnightBlue/g' carpet_3ST.svg
 <li><p><a href="https://github.com/jhollandUVic/265Draw/blob/master/sierpinski_carpets.html"><code>sierpinksi_carpets.html</code></a></p>
 
 <ul>
-<li>User’s manual for the application.</li>
+<li>Users’ manual for the application.</li>
 </ul></li>
 <li><p><a href="https://github.com/jhollandUVic/265Draw/blob/master/sierpinski.sh"><code>sierpinski.sh</code></a></p>
 
@@ -292,7 +292,7 @@ sed -i '' 's/none/MidnightBlue/g' carpet_3ST.svg
 
 <hr />
 
-<p>Last Update: 2017 March 27 at 11:59:48 PDT</p>
+<p>Last Update: 2017 March 27 at 13:12:05 PDT</p>
 
 
 
