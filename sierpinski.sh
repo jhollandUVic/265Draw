@@ -28,17 +28,12 @@ fi
 
 if [[ $3 == light ]] ; then
 	col_theme=$3
-	background=Black
 	background=MidnightBlue
 elif [[ $3 == medium ]] ; then
 	col_theme=$3
-	background=LightGray
 	background=WhiteSmoke
 elif [[ $3 == dark ]] ; then
 	col_theme=$3
-	background=LightGoldenRodYellow
-	background=BlanchedAlmond
-	background=Azure
 	background=Linen
 else 
 	echo "$0: usage: sierpinski colour theme '$3' not valid"
