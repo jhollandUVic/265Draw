@@ -1,35 +1,24 @@
-#	265Draw: Sierpinski Carpets Users’ Manual
+#	265Draw: Sierpinski Carpets
 
 ---
 ##	Application Concepts
 
-*	A Sierpinski Carpet is a recursive fractal, where smaller copies of an original shape are drawn around the original, then even smaller copies are drawn around the copies, to an arbitrary level of recursion.
-*	Rotation, scaling, and translation actions are applied to surround the original Sierpinski Carpet with copies or tiles. This is a partial mimicry of the recursive process.
+*	A Sierpinski Carpet is a recursive fractal, where smaller copies of an original shape are drawn around the original to an arbitrary level of recursion.
+*	Rotation, scaling, and translation actions are applied to surround the original Sierpinski Carpet with copies or tiles.
 
-###	Example SVG Images Generated
-
-*	Sierpinski Carpet With Three Levels of Recursion:
-
-![Carpet With Three Levels of Recursion](image/carpet_3.svg "3513 Lines")
-
-*	Tiled Sierpinski Carpets With Two Levels of Recursion:
-
-![Tiled Carpets With Two Levels of Recursion](image/carpet_2ST.svg "3945 Lines")
+![Example Carpets](image/carpets.png "Three levels of recursion on left; Two levels of recursion with tiling on right")
 
 ###	Recursion Levels
-*	A recursion level from 0 to 4 is supported.
-*	A recursion level of 0 will result in one square in the center of the canvas. Tiling will place eight smaller squares around the original.
-*	A recursion level of 4 will result in a slow-drawing large SVG file and, at the resolution of the canvas, one-pixel squares at the final recursion level. There is no point in further recursions because the finest detail is at the sub-pixel level.
+*	A recursion level from 0 to 4 is supported. 0 is no recursion; 4 is the practical limit given canvas resolution.
 
 ###	Tiling Variations
-*	`rotate`: The tiled example above shows a scaling of the original carpet to one third its size, then rotating, scaling, and translating eight carpet copies around the original.
-*	`carpet`: another version is just translating and rotating copies without scaling.
-*	`diagonal`: a third version only rotates copies on the diagonals.
-*	`cross`: a fourth version only rotates the copies up and down and across from the original.
+*	`rotate`: Rotate, scale, and translate eight carpet copies around the original.
+*	`carpet`: Translate and rotate copies without scaling.
+*	`diagonal`: Rotate copies on the diagonals.
+*	`cross`: Rotate copies up and down and across from the original.
 
 ### Colour
-*	Three colour themes are supported: `light`, `medium`, `dark`.
-*	The colours within each theme are chosen randomly meaning seeing the same colour combination twice is unlikely.
+*	`light`, `medium`, `dark` themes are supported with colours chosen randomly within each theme.
 
 ##	Application Usage
 
@@ -43,108 +32,88 @@
 	
 		*	`recursion`: an integer between 0 and 4.
 		
-			`python generate_carpet.py 2 > carpet_2.txt` creates a carpet with two levels of recursion.
-
-		
 		*	`pattern`: a string defining the tiling pattern required.
-			*	`carpet` will create smaller versions of the original carpet around the original.
-			*	`cross` will create four rotated versions of the original carpet, one each at either side and above and below the original.
+			*	`carpet` creates smaller versions of the original carpet around the original.
+			*	`cross` creates four rotated versions of the original carpet, side-by-side and up-and-down plus four un-rotated versions.
 			*	`diagonal` will place rotated versions of the original on the diagonals.
 			*	`rotate` will rotate all versions of the original.
-			
-		*	`colour-theme`: a string defining the colour selections to be used to draw squares making up the carpet.
-			*	`light`: Light colours (eg. `LightBlue`) are randomly chosen from `css_colours.txt` for the lines that make up a square in a carpet. The resulting carpets are displayed on a dark background.
-			*	`medium`: Random medium colours (eg. `MediumVioletRed`) are used for squares. A complementary background colour is used.
-			*	`dark`: Random colours with `Dark` in their name (eg. `DarkSeaGreen`) are used to colour squares. A contrasting background colour is used.
-		*	Here is an example of a run of the application script. The script echoes its actions to the console to show progress:
-		
-		
-				🌀 > Home: bash sierpinski.sh 3 rotate light
-				*
-				* Create a Recursive Sierpinski Carpet with 3 Levels
-				python generate_carpet.py 3 light > carpet_3.txt
-				*
-				* Create colour svg file from base carpet
-				python lines_to_svg_colour.py < carpet_3.txt > carpet_3.svg
-				*
-				* Change background colour in base carpet svg
-				sed -i '' 's/none/MidnightBlue/g' carpet_3.svg
-				*
-				* Scale carpet lines down to fit in central ninth of canvas
-				python rotate_scale_translate.py -f .3333 < carpet_3.txt > carpet_3S.txt
-				*
-				* Build tile patterns from scaled file
-				python transform_carpet.py rotate < carpet_3S.txt > carpet_3ST.txt
-				*
-				*	Create colour svg file from tiled carpet
-				python lines_to_svg_colour.py < carpet_3ST.txt > carpet_3ST.svg
-				*
-				* Change background colour in tiled carpet svg
-				sed -i '' 's/none/MidnightBlue/g' carpet_3ST.svg
+						
+		*	`colour-theme`: a string defining the colour selections to be used.
+			*	`light`: Light colours (eg. `LightBlue`) randomly chosen from `css_colours.txt` on a dark background.
+			*	`medium`: Random medium colours (eg. `MediumVioletRed`) chosen.
+			*	`dark`: Random `Dark` colours on a light background.
 				
-		*	Two SVG files are created:
-			*	A Sierpinski Carpet at the recursion level and with the colour theme requested.
-				*	The file name `carpet_` will be suffixed with the recursion level; eg. `carpet_3.svg`
-			*	A tiled Sierpinski Carpet with pattern and colour theme as requested.
-				*	The suffix of the file name with recursion level and `ST`, which stands for `scaled and transformed`. Eg. `carpet_3ST.svg`.
+	*	Two SVG files are created:
+		*	A Sierpinski Carpet at the recursion level and with the colour theme requested.
+			*	The file name `carpet_` will be suffixed with the recursion level; eg. `carpet_3.svg`
+		*	A tiled Sierpinski Carpet with pattern and colour theme as requested.
+			*	The suffix of the file name with recursion level and `ST`, which stands for `scaled and transformed`. Eg. `carpet_3ST.svg`.
 
+	*	Console Log (all but first line is output):
+
+			🌀 > Home: bash sierpinski.sh 3 rotate light
+			*
+			* Create a Recursive Sierpinski Carpet with 3 Levels
+			python generate_carpet.py 3 light > carpet_3.txt
+			*
+			* Create colour svg file from base carpet
+			python lines_to_svg_colour.py < carpet_3.txt > carpet_3.svg
+			*
+			* Change background colour in base carpet svg
+			sed -i '' 's/none/MidnightBlue/g' carpet_3.svg
+			*
+			* Scale carpet lines down to fit in central ninth of canvas
+			python rotate_scale_translate.py -f .3333 < carpet_3.txt > carpet_3S.txt
+			*
+			* Build tile patterns from scaled file
+			python transform_carpet.py rotate < carpet_3S.txt > carpet_3ST.txt
+			*
+			*	Create colour svg file from tiled carpet
+			python lines_to_svg_colour.py < carpet_3ST.txt > carpet_3ST.svg
+			*
+			* Change background colour in tiled carpet svg
+			sed -i '' 's/none/MidnightBlue/g' carpet_3ST.svg
 
 ##	Application Source:
-
-*	[`generate_carpet.py`](https://github.com/jhollandUVic/UVic_265_ColourDraw/blob/master/generate_carpet.py)
+*	[`css_colours.txt`](https://github.com/jhollandUVic/265Draw/blob/master/css_colours.txt)
+	*	Supplied file with 148 css colour names
+*	[`generate_carpet.py`](https://github.com/jhollandUVic/265Draw/blob/master/generate_carpet.py)
 	*	Based on `generate_tree.py`
 	*	The algorithm for generating Sierpinski Carpets was found at [http://lodev.org/cgtutor/sierpinski.html](http://lodev.org/cgtutor/sierpinski.html)
 	*	Can make a Sierpinski Carpet accepting levels of recursion required.
-
-*	[`sierpinski.sh`](https://github.com/jhollandUVic/UVic_265_ColourDraw/blob/master/sierpinksi.sh)
-	*	Bash script to exercise code developed to build carpets.
-
-*	[`transform_carpet.py`](https://github.com/jhollandUVic/UVic_265_ColourDraw/blob/master/transform_carpet.py)
-	* Based on `rings.py`
-	*	Modifies an existing Sierpinski Carpet, by rotating, scaling, translating, and cloning.
-
-*	[`rotate_scale_translate.py`](https://github.com/jhollandUVic/UVic_265_ColourDraw/blob/master/rotate_scale_translate.py)
-	*	Existing code modified to know about and pass on lines augmented with colour.
 	
-*	[`Line_Point.py`](https://github.com/jhollandUVic/UVic_265_ColourDraw/blob/master/Line_Point.py)
+	`python generate_carpet.py 2 > carpet_2.txt` where the first `2` is the recursion level.
+	
+*	[`lines_to_svg_colour.py`](https://github.com/jhollandUVic/265Draw/blob/master/lines_to_svg_colour.py)
+	*	Supplied python module which translates lines created in `generate_carpet.py` and `transform_carpet.py` into SVG files.
+	
+*	[`Line_Point_colour.py`](https://github.com/jhollandUVic/265Draw/blob/master/Line_Point_colour.py)
 	*	Classes for lines and points, as supplied with assignment.
-
-##	Usage Examples 
-
-*	Script to generate Sierpinski Carpets
-	*	`sh sierpinski.sh recursion pattern colour-theme`
 	
-		*	Where recursion is a number indicating level of recursion in the carpet.
-			*	A number greater than 4 means a slow draw and more detail than visible in the canvas.
-		*	Where pattern is one of: cross, diagonal, rotation.
-
-* Create a Recursive Sierpinski Carpet with 2 Levels
-
-	*	`python generate_carpet.py 2 > carpet_2.txt`
+*	[`rotate_scale_translate.py`](https://github.com/jhollandUVic/265Draw/blob/master/rotate_scale_translate.py)
+	*	Supplied python module which performs transformations on a lines file.
 	
-		*	Replace recursion level with a number indicating levels of recursion in the carpet
-		*	A number greater than 4 means a slow draw and more detail than visible in the canvas.
+	`python rotate_scale_translate.py -f .3333 < carpet_2.txt > carpet_2S.txt` will scale by 1/3.
+*	[`sierpinksi_carpets.html`](https://github.com/jhollandUVic/265Draw/blob/master/sierpinksi_carpets.html)
+	*	User’s manual for the application.
 
-* Scale carpet lines file down to fit in central third of canvas
-
-	`python rotate_scale_translate.py -f .3333 < carpet_2.txt > carpet_2S.txt`
-
-* Build some tile patterns from scaled file
-
-	`python transform_carpet.py` pattern `< carpet_2S.txt > carpet_2ST.txt`
+*	[`sierpinski.sh`](https://github.com/jhollandUVic/265Draw/blob/master/sierpinski.sh)
+	*	Bash script to exercise code developed to build carpets.
 	
-	*	Where pattern is one of: cross, diagonal, rotation.
+*	[`transform_carpet.py`](https://github.com/jhollandUVic/265Draw/blob/master/transform_carpet.py)
+	* Based on `rings.py`.
+	*	Modifies an existing Sierpinski Carpet, by rotating, scaling, translating, and cloning.
+	
+	`python transform_carpet.py cross < carpet_2S.txt > carpet_2ST.txt` where `cross` is a pattern for transformation.
 
 ##	Bugs
 *	Use of sed to replace `fill:none` in the `SVG_BOUNDING_BOX` requires a different form on Mac and on Linux:
 	*	On Mac OS 10.12.3: `sed -i '' 's/none/${background}/g' carpet_${recursions}ST.svg`
 	*	On Ubuntu 14.04.5: `sed -i 's/none/${background}/g' carpet_${recursions}ST.svg`
+	
 ##	References
 *	[Sierpinski Fractals](http://lodev.org/cgtutor/sierpinski.html)
 *	[SVG Tutorial](https://www.w3schools.com/graphics/svg_intro.asp)
 
-##	Document Notes
-*	This document built in [BBEdit](http://www.barebones.com/products/bbedit/) in [Markdown](http://daringfireball.net/projects/markdown/) format, converted to HTML with the [Markdown Text-to-HTML filter](http://daringfireball.net/projects/downloads/Markdown_1.0.1.zip), then inserted into a CSS wrapper.
-
 ---
-Last Update: 2017 March 26 at 20:05:27 PDT
+Last Update: 2017 March 27 at 09:40:20 PDT
