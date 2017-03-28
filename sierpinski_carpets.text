@@ -3,13 +3,13 @@
 ---
 ##	Application Concepts
 
-*	A Sierpinski Carpet is a recursive fractal, where smaller copies of a square are drawn around the original square to an arbitrary level of recursion.
-*	Rotation, scaling, and translation actions are applied to surround the original Sierpinski Carpet with copies or tiles.
+*	A Sierpinski Carpet is a recursive fractal, where smaller copies of a square are drawn around the original square, then smaller squares around the copies, to an arbitrary level of recursion.
+*	Rotation, scaling, and translation actions are applied to surround the finished Sierpinski Carpet with copies of itself; a process called tiling.
 
-![Example Carpets](image/carpets.png "Three levels of recursion on left; Two levels of recursion with tiling on right")
+![Example Carpets](carpets.png "Three levels of recursion on left; Two levels of recursion with tiling on right")
 
 ###	Recursion Levels
-*	In this application, recursion levels from 0 to 4 are supported. 0 is no recursion; 4 is the practical limit given canvas resolution.
+*	In this application, recursion levels from 0 to 4 are supported. 0 is no recursion; 4 is the practical upper limit given canvas resolution.
 
 ###	Tiling Variations
 *	`rotate`: Rotate, scale, and translate eight carpet copies around the original.
@@ -28,26 +28,26 @@
 	
 		`bash sierpinski.sh recursion pattern colour-theme`
 
-	* The application accepts three parameters:
+	* The application script accepts three parameters:
 	
 		*	`recursion`: an integer between 0 and 4.
 		
 		*	`pattern`: a string defining the tiling pattern required.
 			*	`carpet` creates smaller versions of the original carpet around the original.
-			*	`cross` creates four rotated versions of the original carpet, side-by-side and up-and-down plus four un-rotated versions.
+			*	`cross` creates four rotated versions of the original carpet, side-by-side and up-and-down plus four un-rotated versions in the corners of the square.
 			*	`diagonal` will place rotated versions of the original on the diagonals.
 			*	`rotate` will rotate all versions of the original.
 						
 		*	`colour-theme`: a string defining the colour selections to be used.
 			*	`light`: Light colours (eg. `LightBlue`) randomly chosen from `css_colours.txt` on a dark background.
-			*	`medium`: Random medium colours (eg. `MediumVioletRed`) chosen.
-			*	`dark`: Random `Dark` colours on a light background.
+			*	`medium`: Random Medium colours (eg. `MediumVioletRed`) chosen.
+			*	`dark`: Random Dark colours (eg. `DarkSeaGreen`) on a light background.
 				
 	*	Two SVG files are created in the same directory as the application:
 		*	A Sierpinski Carpet at the recursion level and with the colour theme requested.
-			*	The file name `carpet_` will be suffixed with the recursion level. Eg. `carpet_3.svg`
+			*	Its file name `carpet_` will be suffixed with the recursion level. Eg. `carpet_3.svg`
 		*	A tiled Sierpinski Carpet with pattern and colour theme as requested.
-			*	The suffix of the file name has recursion level and `ST` (which stands for `scaled and transformed`). Eg. `carpet_3ST.svg`.
+			*	The suffix of its file name has recursion level and `ST` (which stands for `scaled and transformed`). Eg. `carpet_3ST.svg`.
 
 	*	Console Log (all but first line is output):
 
