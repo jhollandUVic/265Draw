@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
-	<title>Sierpinski Carpets Users Manual</title>
-	<meta name="generator" content="BBEdit 11.6" />
+	<title>Sierpinski Carpets Users’ Manual</title>
+	<meta name="generator" content="BBEdit 11.6.4" />
 	<style type="text/css">
 
 		body	{	color: navy; 
 						background-color: gray;
 					 	font-family: Helvetica, Univers, sans-serif;
-					 	font-size: 16px
+					 	font-size: 16px;
 					}
 		code {color: #006600; font-family: "Lucida Console", Courier, "Andale Mono", monospace}
 		h1 {color: navy; font-style: oblique; text-shadow: 2px 2px 2px lightgray}
@@ -75,7 +75,7 @@
 	table.main {	width: 800px;
 					padding: 1px;
 					spacing: 2px;
-					border: 2px dotted lightgray;
+					border: 2px dotted black;
 					border-radius: 15px;
 					border-spacing: 8px;
 					margin-right: auto;
@@ -124,25 +124,22 @@
 <h2>Application Concepts</h2>
 
 <ul>
-<li>A Sierpinski Carpet is a recursive fractal, where smaller copies of a square are drawn around the original square, then smaller squares around the copies, to an arbitrary level of recursion.</li>
-<li>Rotation, scaling, and translation actions are applied to surround the finished Sierpinski Carpet with copies of itself; a process called tiling.</li>
+<li>A Sierpinski Carpet is a recursive fractal, where smaller copies of a square are drawn around the original square, then smaller squares around the copies, to an arbitrary level of recursion (see image below left).</li>
+<li>Rotation, scaling, and translation actions are applied to surround the finished Sierpinski Carpet with copies of itself; a process called tiling (see image below right).</li>
 </ul>
 
-<p><img src="carpets.png" alt="Example Carpets" title="Three levels of recursion on left; Two levels of recursion with tiling on right" /></p>
+<p><img src="carpets.png" alt="Example Carpets" title="Three levels of recursion on left; Two levels of recursion with rotate tiling on right." /></p>
 
 <h3>Recursion Levels</h3>
 
 <ul>
-<li>In this application, recursion levels from 0 to 4 are supported. 0 is no recursion; 4 is the practical upper limit given canvas resolution.</li>
+<li>In this application, recursion levels from 0 to 4 are supported. 0 is no recursion; 4 is the practical upper limit given canvas resolution, file size, and drawing speed.</li>
 </ul>
 
 <h3>Tiling Variations</h3>
 
 <ul>
-<li><code>rotate</code>: Rotate, scale, and translate eight carpet copies around the original.</li>
-<li><code>carpet</code>: Translate and rotate copies without scaling.</li>
-<li><code>diagonal</code>: Rotate copies on the diagonals.</li>
-<li><code>cross</code>: Rotate copies up and down and across from the original.</li>
+<li>The tiled carpets can be arranged in different patterns around the original: <code>carpet</code>, <code>cross</code>, <code>diagonal</code>, <code>rotate</code>.</li>
 </ul>
 
 <h3>Colour Themes</h3>
@@ -154,30 +151,28 @@
 <h2>Application Usage</h2>
 
 <ul>
-<li><p><code>sierpinski.sh</code> is the script which embodies the application built to create Sierpinski Carpets.</p>
-
-<ul>
+<li><p><code>sierpinski.sh</code> is the script which embodies the application built to create Sierpinski Carpets.</p></li>
 <li><p>The form of the command-line invocation is:</p>
 
 <p><code>bash sierpinski.sh recursion pattern colour-theme</code></p></li>
 <li><p>The application script accepts three parameters:</p>
 
 <ul>
-<li><p><code>recursion</code>: an integer between 0 and 4.</p></li>
+<li><p><code>recursion</code>: an integer chosen from 0 through 4.</p></li>
 <li><p><code>pattern</code>: a string defining the tiling pattern required.</p>
 
 <ul>
-<li><code>carpet</code> creates smaller versions of the original carpet around the original.</li>
-<li><code>cross</code> creates four rotated versions of the original carpet, side-by-side and up-and-down plus four un-rotated versions in the corners of the square.</li>
+<li><code>carpet</code> creates copies of the original carpet around itself, half rotated 180°.</li>
+<li><code>cross</code> creates four versions of the original carpet, rotated 45°, either side and up-and-down, plus four un-rotated versions in the corners of the square.</li>
 <li><code>diagonal</code> will place rotated versions of the original on the diagonals.</li>
-<li><code>rotate</code> will rotate all versions of the original.</li>
+<li><code>rotate</code> will rotate all copies of the original by odd multiples of 45°.</li>
 </ul></li>
 <li><p><code>colour-theme</code>: a string defining the colour selections to be used.</p>
 
 <ul>
-<li><code>light</code>: Light colours (eg. <code>LightBlue</code>) randomly chosen from <code>css_colours.txt</code> on a dark background.</li>
-<li><code>medium</code>: Random Medium colours (eg. <code>MediumVioletRed</code>) chosen.</li>
-<li><code>dark</code>: Random Dark colours (eg. <code>DarkSeaGreen</code>) on a light background.</li>
+<li><code>light</code>: Light colours (eg. <code>LightBlue</code>) randomly chosen from <code>css_colours.txt</code> on a <code>MidnightBlue</code> background.</li>
+<li><code>medium</code>: Random Medium colours (eg. <code>MediumVioletRed</code>) on <code>WhiteSmoke</code>.</li>
+<li><code>dark</code>: Random Dark colours (eg. <code>DarkSeaGreen</code>) on <code>Linen</code>.</li>
 </ul></li>
 </ul></li>
 <li><p>Two SVG files are created in the same directory as the application:</p>
@@ -185,7 +180,7 @@
 <ul>
 <li>A Sierpinski Carpet at the recursion level and with the colour theme requested.
 <ul>
-<li>Its file name <code>carpet_</code> will be suffixed with the recursion level. Eg. <code>carpet_3.svg</code></li>
+<li>Its file name <code>carpet_</code> will be suffixed with the recursion level. Eg. <code>carpet_3.svg</code>.</li>
 </ul></li>
 <li>A tiled Sierpinski Carpet with pattern and colour theme as requested.
 <ul>
@@ -194,7 +189,7 @@
 </ul></li>
 <li><p>Console Log (all but first line is output):</p>
 
-<pre><code>&gt;&gt;&gt; Home: bash sierpinski.sh 3 rotate light
+<pre><code>==&gt; Home: bash sierpinski.sh 3 rotate light
 *
 * Create a Recursive Sierpinski Carpet with 3 Levels
 python generate_carpet.py 3 light &gt; carpet_3.txt
@@ -217,7 +212,6 @@ python lines_to_svg_colour.py &lt; carpet_3ST.txt &gt; carpet_3ST.svg
 * Change background colour in tiled carpet svg
 sed -i '' 's/none/MidnightBlue/g' carpet_3ST.svg
 </code></pre></li>
-</ul></li>
 </ul>
 
 <h2>Application Source:</h2>
@@ -276,7 +270,7 @@ sed -i '' 's/none/MidnightBlue/g' carpet_3ST.svg
 <h2>Bugs</h2>
 
 <ul>
-<li>Use of sed to replace <code>fill:none</code> in the <code>SVG_BOUNDING_BOX</code> requires a different form on Mac and on Linux:
+<li>Use of sed to replace <code>none</code> with a background colour in the <code>SVG_BOUNDING_BOX</code> requires a different form on Mac and on Linux:
 <ul>
 <li>On Mac OS 10.12.3: <code>sed -i '' 's/none/${background}/g' carpet_${recursions}ST.svg</code></li>
 <li>On Ubuntu 14.04.5: <code>sed -i 's/none/${background}/g' carpet_${recursions}ST.svg</code></li>
@@ -292,7 +286,7 @@ sed -i '' 's/none/MidnightBlue/g' carpet_3ST.svg
 
 <hr />
 
-<p>Last Update: 2017 March 27 at 19:10:44 PDT</p>
+<p>Last Update: 2017 March 28 at 08:04:25 PDT</p>
 
 
 
