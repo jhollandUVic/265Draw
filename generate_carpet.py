@@ -168,7 +168,6 @@ random.shuffle(l_colours)
 this_colour = l_colours[0]
 prev_colour = l_colours[1]
 
-# Dimensions chosen so side of carpet divisible by 3.
 # Co-ordinates describe a square, upper left to bottom right.
-draw_carpet(recursion_steps,-249, 249, 249, -249, this_colour, prev_colour )
+draw_carpet(recursion_steps,-250, 250, 250, -250, this_colour, prev_colour )
 
