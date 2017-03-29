@@ -159,6 +159,9 @@ elif colour_theme == 'tropical':
 	theme_pattern = 'Pink|Teal|Turquoise|Purple|Fuchsia'
 elif colour_theme == 'bold':
 	theme_pattern= 'Dark|Deep'
+else: # Should never happen since we checked input above
+	print >> sys.stderr, ", ".join(map(str, cl_colour_themes))
+	sys.exit(1)
 	
 # Build a random list of colours chosen according to theme specified
 l_colours = filter(lambda x: re.search(theme_pattern, x), l_colour_names)
@@ -169,5 +172,5 @@ this_colour = l_colours[0]
 prev_colour = l_colours[1]
 
 # Co-ordinates describe a square, upper left to bottom right.
-draw_carpet(recursion_steps,-250, 250, 250, -250, this_colour, prev_colour )
+draw_carpet(recursion_steps,canvas, this_colour, prev_colour )
 
