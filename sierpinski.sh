@@ -26,15 +26,14 @@ else
 	exit 1
 fi
 
-if [[ $3 == light ]] ; then
+if [[ $3 == primary ]] ; then
 	col_theme=$3
-	background=MidnightBlue
-elif [[ $3 == medium ]] ; then
+elif [[ $3 == secondary ]] ; then
 	col_theme=$3
-	background=WhiteSmoke
-elif [[ $3 == dark ]] ; then
+elif [[ $3 == bold ]] ; then
 	col_theme=$3
-	background=Linen
+elif [[ $3 == tropical ]] ; then
+	col_theme=$3
 else 
 	echo "$0: usage: sierpinski colour theme '$3' not valid"
 	exit 1
@@ -54,11 +53,11 @@ CMD="python lines_to_svg_colour.py < carpet_${recursions}.txt > carpet_${recursi
 echo "${CMD}"
 eval "${CMD}"
 rc=$?; if [[ $rc != 0 ]]; then exit $rc; fi
-echo "*"
-echo	"* Change background colour in base carpet svg"
-CMD="sed -i '' 's/none/${background}/g' carpet_${recursions}.svg"
-echo "${CMD}"
-eval "${CMD}"
+#	echo "*"
+#	echo	"* Change background colour in base carpet svg"
+#	CMD="sed -i '' 's/none/${background}/g' carpet_${recursions}.svg"
+#	echo "${CMD}"
+#	eval "${CMD}"
 rc=$?; if [[ $rc != 0 ]]; then exit $rc; fi
 echo	"*"
 echo	"* Scale carpet lines down to fit in central ninth of canvas"
@@ -77,10 +76,10 @@ echo "*	Create colour svg file from tiled carpet"
 CMD="python lines_to_svg_colour.py < carpet_${recursions}ST.txt > carpet_${recursions}ST.svg"
 echo "${CMD}"
 eval "${CMD}"
-echo	"*"
-echo	"* Change background colour in tiled carpet svg"
-CMD="sed -i '' 's/none/${background}/g' carpet_${recursions}ST.svg"
-echo "${CMD}"
-eval "${CMD}"
+#	echo	"*"
+#	echo	"* Change background colour in tiled carpet svg"
+#	CMD="sed -i '' 's/none/${background}/g' carpet_${recursions}ST.svg"
+#	echo "${CMD}"
+#	eval "${CMD}"
 rc=$?; if [[ $rc != 0 ]]; then exit $rc; fi
 exit 0
