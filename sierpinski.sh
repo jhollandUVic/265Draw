@@ -53,12 +53,6 @@ CMD="python lines_to_svg_colour.py < carpet_${recursions}.txt > carpet_${recursi
 echo "${CMD}"
 eval "${CMD}"
 rc=$?; if [[ $rc != 0 ]]; then exit $rc; fi
-#	echo "*"
-#	echo	"* Change background colour in base carpet svg"
-#	CMD="sed -i '' 's/none/${background}/g' carpet_${recursions}.svg"
-#	echo "${CMD}"
-#	eval "${CMD}"
-rc=$?; if [[ $rc != 0 ]]; then exit $rc; fi
 echo	"*"
 echo	"* Scale carpet lines down to fit in central ninth of canvas"
 CMD="python rotate_scale_translate.py -f ${scale_to_a_third} < carpet_${recursions}.txt > carpet_${recursions}S.txt"
@@ -76,10 +70,5 @@ echo "*	Create colour svg file from tiled carpet"
 CMD="python lines_to_svg_colour.py < carpet_${recursions}ST.txt > carpet_${recursions}ST.svg"
 echo "${CMD}"
 eval "${CMD}"
-#	echo	"*"
-#	echo	"* Change background colour in tiled carpet svg"
-#	CMD="sed -i '' 's/none/${background}/g' carpet_${recursions}ST.svg"
-#	echo "${CMD}"
-#	eval "${CMD}"
 rc=$?; if [[ $rc != 0 ]]; then exit $rc; fi
 exit 0
