@@ -81,6 +81,7 @@ def draw_carpet(this_step, x1, y1, x2, y2, colour, prev_colour):
 			next_colour = l_colours[0]
 			if next_colour != colour and next_colour != prev_colour:
 				break
+				
 		draw_carpet(next_step, r_x1,   y1, r_x2, r_y1, next_colour, colour) # top center
 		draw_carpet(next_step,   x1,   y1, r_x1, r_y1, next_colour, colour) # top left
 		draw_carpet(next_step,   x1, r_y1, r_x1, r_y2, next_colour, colour) # center left
@@ -90,25 +91,21 @@ def draw_carpet(this_step, x1, y1, x2, y2, colour, prev_colour):
 		draw_carpet(next_step, r_x2, r_y1,   x2, r_y2, next_colour, colour) # center right
 		draw_carpet(next_step, r_x2,   y1,   x2, r_y1, next_colour, colour) # top right
 
-#	A mechanism to load lines of a file into a list
-#	This is used to create a list of the 148 css colours supplied
-'''
-purpose
-	Load lines of a file into a list
-preconditions
-	this_step is a recursion level
-	x1, y1, x2, y2 are the four points of the square
-	colour and prev_colour are valid colour names
-'''
 '''
 purpose
 	convert the lines in stdin to a list containing, for each line,
 	a valid css colour name.
 preconditions
 	file_object is a reference to a readable file containing legal 
-	colour names
+	colour names ('css.colours.txt')
 '''
 def load_line_file(file_object):
+
+	# Monochrome colours or colours with not enough contrast
+	# to show well on a white background
+	unwanted_colours = ['White', 'Light', 'Grey', 'Gray', 'Black',
+						'Gainsboro', 'Ivory', 'Snow']
+						
 	line_objects = [ ]
 	for line in file_object:
 		if line[-2:] == '\r\n': # Windows
@@ -116,9 +113,12 @@ def load_line_file(file_object):
 		elif line[-1] == '\n': # Linux
 			line = line[:-1] # strip newline
 		line_object = line
-		if 'Light' not in line_object:
-			if 'White' not in line_object:
-				line_objects.append(line_object)
+		
+		# Remove colours which fade into a white background
+		# or which are monochrome colours
+		if not any(unwanted_colour in line_object
+					for unwanted_colour in unwanted_colours):
+			line_objects.append(line_object)
 
 	return line_objects
 
@@ -141,12 +141,9 @@ except ValueError:
 	print >> sys.stderr, 'Value Error: ' + sys.argv[0] + ' Supply colour theme as string'
 	sys.exit(1)
 
-# Colour names are capitalized in source file
-# colour_theme = colour_theme.capitalize()
-
 if colour_theme not in cl_colour_themes:
 	print >> sys.stderr, 'Values: ' + sys.argv[0] + ' Supply colour theme from:',
-	print >> sys.stderr, ",".join(map(str, cl_colour_themes))
+	print >> sys.stderr, ", ".join(map(str, cl_colour_themes))
 	sys.exit(1)
 
 # Load valid css colours into list
@@ -155,19 +152,17 @@ l_colour_names = load_line_file(fh_css_colour_names)
 fh_css_colour_names.close
 
 if colour_theme == 'primary':
-	colour_theme = 'Red|Blue|Yellow+'
+	theme_pattern = 'Red|Blue|Yellow'
 if colour_theme == 'secondary':
-	colour_theme = 'Orange|Purple|Green'
+	theme_pattern = 'Orange|Purple|Green'
 elif colour_theme == 'tropical':
-	colour_theme = 'Pink|Teal|Turquoise|Purple'
+	theme_pattern = 'Pink|Teal|Turquoise|Purple|Fuchsia'
 elif colour_theme == 'bold':
-	colour_theme = 'Dark'
+	theme_pattern= 'Dark|Deep'
 	
 # Build a random list of colours chosen according to theme specified
-l_colours = filter(lambda x: re.search(colour_theme, x), l_colour_names)
+l_colours = filter(lambda x: re.search(theme_pattern, x), l_colour_names)
 random.shuffle(l_colours)
-
-print >> sys.stderr, l_colours
 
 # Select two different colour names so succeeding levels are different colours
 this_colour = l_colours[0]
