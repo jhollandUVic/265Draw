@@ -15,7 +15,7 @@ reference
 	See <http://lodev.org/cgtutor/sierpinski.html>
 '''
 
-cl_colour_themes = [ 'Dark', 'Light', 'Medium']
+cl_colour_themes = [ 'bold', 'primary', 'secondary', 'tropical']
 f_colour_names = 'css_colours.txt'
 
 '''
@@ -116,7 +116,9 @@ def load_line_file(file_object):
 		elif line[-1] == '\n': # Linux
 			line = line[:-1] # strip newline
 		line_object = line
-		line_objects.append(line_object)
+		if 'Light' not in line_object:
+			if 'White' not in line_object:
+				line_objects.append(line_object)
 
 	return line_objects
 
@@ -140,7 +142,7 @@ except ValueError:
 	sys.exit(1)
 
 # Colour names are capitalized in source file
-colour_theme = colour_theme.capitalize()
+# colour_theme = colour_theme.capitalize()
 
 if colour_theme not in cl_colour_themes:
 	print >> sys.stderr, 'Values: ' + sys.argv[0] + ' Supply colour theme from:',
@@ -152,9 +154,20 @@ fh_css_colour_names = open(f_colour_names, 'r')
 l_colour_names = load_line_file(fh_css_colour_names)
 fh_css_colour_names.close
 
+if colour_theme == 'primary':
+	colour_theme = 'Red|Blue|Yellow+'
+if colour_theme == 'secondary':
+	colour_theme = 'Orange|Purple|Green'
+elif colour_theme == 'tropical':
+	colour_theme = 'Pink|Teal|Turquoise|Purple'
+elif colour_theme == 'bold':
+	colour_theme = 'Dark'
+	
 # Build a random list of colours chosen according to theme specified
 l_colours = filter(lambda x: re.search(colour_theme, x), l_colour_names)
 random.shuffle(l_colours)
+
+print >> sys.stderr, l_colours
 
 # Select two different colour names so succeeding levels are different colours
 this_colour = l_colours[0]
