@@ -17,6 +17,8 @@ reference
 
 cl_colour_themes = [ 'bold', 'primary', 'secondary', 'tropical']
 f_colour_names = 'css_colours.txt'
+c_recursion_range = [0, 4]
+c_canvas_bounds = [-250, 250, 250, -250]
 
 '''
 purpose
@@ -125,26 +127,27 @@ def load_line_file(file_object):
 # ********** process the command line arguments
 if len(sys.argv) != 3:
 	print >> sys.stderr, 'Syntax: ' + sys.argv[0] + ' Supply recursion steps and colour theme'
-	sys.exit(1)
+	sys.exit(2)
 try:
 	recursion_steps = int(sys.argv[1])
 except ValueError:
 	print >> sys.stderr, 'Value Error: ' + sys.argv[0] + ' Supply recursion steps as integer'
-	sys.exit(2)
-if recursion_steps > 4:
-	print >> sys.stderr, 'Values: ' + sys.argv[0] + ' Too many recursion steps'
 	sys.exit(3)
+if not ( c_recursion_range[0] <= recursion_steps <= c_recursion_range[1] ):
+	print >> sys.stderr, 'Values: ' + sys.argv[0] + ' Recursion steps out of range ' \
+			+ str(c_recursion_range[0]) + ' to ' + str(c_recursion_range[1])
+	sys.exit(4)
 
 try:
 	colour_theme = str(sys.argv[2])
 except ValueError:
 	print >> sys.stderr, 'Value Error: ' + sys.argv[0] + ' Supply colour theme as string'
-	sys.exit(1)
+	sys.exit(5)
 
 if colour_theme not in cl_colour_themes:
 	print >> sys.stderr, 'Values: ' + sys.argv[0] + ' Supply colour theme from:',
 	print >> sys.stderr, ", ".join(map(str, cl_colour_themes))
-	sys.exit(1)
+	sys.exit(6)
 
 # Load valid css colours into list
 fh_css_colour_names = open(f_colour_names, 'r')
@@ -161,7 +164,7 @@ elif colour_theme == 'bold':
 	theme_pattern= 'Dark|Deep'
 else: # Should never happen since we checked input above
 	print >> sys.stderr, ", ".join(map(str, cl_colour_themes))
-	sys.exit(1)
+	sys.exit(7)
 	
 # Build a random list of colours chosen according to theme specified
 l_colours = filter(lambda x: re.search(theme_pattern, x), l_colour_names)
@@ -172,5 +175,6 @@ this_colour = l_colours[0]
 prev_colour = l_colours[1]
 
 # Co-ordinates describe a square, upper left to bottom right.
-draw_carpet(recursion_steps, -250, 250, 250, -250, this_colour, prev_colour )
+draw_carpet(recursion_steps, c_canvas_bounds[0], c_canvas_bounds[1],
+			c_canvas_bounds[2], c_canvas_bounds[3], this_colour, prev_colour)
 
