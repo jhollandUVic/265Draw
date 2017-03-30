@@ -79,7 +79,7 @@
 		-rw-r--r--  1 Home  staff   246469 30 Mar 08:43 carpet_3.svg
 		-rw-r--r--  1 Home  staff  2220517 30 Mar 08:43 carpet_3ST.svg
 
-##	Application Source:
+##	Application Source
 
 *	For a successful run, these files should be in the application directory:
 
@@ -105,4 +105,4 @@
 *	[SVG Tutorial](https://www.w3schools.com/graphics/svg_intro.asp)
 
 ---
-Last Update: 2017 March 30 at 09:37:21 PDT by `teamwin`
+Last Update: 2017 March 30 at 09:40:42 PDT by `teamwin`
