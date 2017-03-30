@@ -71,4 +71,10 @@ CMD="python lines_to_svg_colour.py < carpet_${recursions}ST.txt > carpet_${recur
 echo "${CMD}"
 eval "${CMD}"
 rc=$?; if [[ $rc != 0 ]]; then exit $rc; fi
+echo	"*"
+echo "* Display Information About Files Produced"
+CMD="ls -Farlt carpet_${recursions}*.svg"
+echo "${CMD}"
+eval "${CMD}"
+rc=$?; if [[ $rc != 0 ]]; then exit $rc; fi
 exit 0
