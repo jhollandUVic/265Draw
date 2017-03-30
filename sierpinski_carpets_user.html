@@ -151,10 +151,18 @@
 <h2>Application Usage</h2>
 
 <ul>
-<li><p><code>sierpinski.sh</code> is the application script which builds the Sierpinski carpets.</p></li>
+<li><p><code>sierpinski.sh</code> is the application script which builds the Sierpinski carpets. Application commands are entered at the command line prompt.</p></li>
 <li><p>The form of the command-line invocation is:</p>
 
 <p><code>bash sierpinski.sh recursion pattern colour-theme</code></p></li>
+<li><p>An example of a command to the application:</p>
+
+<p><code>bash sierpinski.sh 3 rotate tropical</code></p></li>
+</ul>
+
+<h3>Input</h3>
+
+<ul>
 <li><p>The application script accepts three parameters:</p>
 
 <ul>
@@ -176,6 +184,11 @@
 <li><code>bold</code>: Colours with deep or dark in their name (eg. <code>DarkSlateBlue</code>).</li>
 </ul></li>
 </ul></li>
+</ul>
+
+<h3>Output</h3>
+
+<ul>
 <li><p>Two SVG files are created in the same directory as the application:</p>
 
 <ul>
@@ -206,7 +219,33 @@ python transform_carpet.py carpet &lt; carpet_3S.txt &gt; carpet_3ST.txt
 *
 * Create colour svg file from tiled carpet line file
 python lines_to_svg_colour.py &lt; carpet_3ST.txt &gt; carpet_3ST.svg
+*
+* Display information about files produced
+ls -Farlt carpet_3*.svg
+-rw-r--r--  1 Home  staff   246469 30 Mar 08:43 carpet_3.svg
+-rw-r--r--  1 Home  staff  2220517 30 Mar 08:43 carpet_3ST.svg
 </code></pre></li>
+</ul>
+
+<h2>Application Source:</h2>
+
+<ul>
+<li><p>For a successful run, these files should be in the application directory:</p>
+
+<ul>
+<li><p><a href="https://github.com/jhollandUVic/265Draw/blob/master/css_colours.txt"><code>css_colours.txt</code></a></p></li>
+<li><p><a href="https://github.com/jhollandUVic/265Draw/blob/master/generate_carpet.py"><code>generate_carpet.py</code></a></p></li>
+<li><p><a href="https://github.com/jhollandUVic/265Draw/blob/master/lines_to_svg_colour.py"><code>lines_to_svg_colour.py</code></a></p></li>
+<li><p><a href="https://github.com/jhollandUVic/265Draw/blob/master/Line_Point_colour.py"><code>Line_Point_colour.py</code></a></p></li>
+<li><p><a href="https://github.com/jhollandUVic/265Draw/blob/master/rotate_scale_translate.py"><code>rotate_scale_translate.py</code></a></p></li>
+<li><p><a href="https://github.com/jhollandUVic/265Draw/blob/master/sierpinski_carpets.html"><code>sierpinksi_carpets.html</code></a></p>
+
+<ul>
+<li>Users’ manual for the application.</li>
+</ul></li>
+<li><p><a href="https://github.com/jhollandUVic/265Draw/blob/master/sierpinski.sh"><code>sierpinski.sh</code></a></p></li>
+<li><p><a href="https://github.com/jhollandUVic/265Draw/blob/master/transform_carpet.py"><code>transform_carpet.py</code></a></p></li>
+</ul></li>
 </ul>
 
 <h2>References</h2>
@@ -218,7 +257,7 @@ python lines_to_svg_colour.py &lt; carpet_3ST.txt &gt; carpet_3ST.svg
 
 <hr />
 
-<p>Last Update: 2017 March 29 at 19:36:58 PDT</p>
+<p>Last Update: 2017 March 30 at 08:46:36 PDT by <code>teamwin</code></p>
 
 
 
