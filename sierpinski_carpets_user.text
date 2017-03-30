@@ -66,12 +66,9 @@
 		* Create colour svg file from tiled carpet line file
 		python lines_to_svg_colour.py < carpet_3ST.txt > carpet_3ST.svg
 
-##	Bugs
-*	Can have colours on succeeding levels with too close a hue. If so, try again.
-
 ##	References
 *	[Sierpinski Fractals](http://lodev.org/cgtutor/sierpinski.html)
 *	[SVG Tutorial](https://www.w3schools.com/graphics/svg_intro.asp)
 
 ---
-Last Update: 2017 March 29 at 19:24:06 PDT
+Last Update: 2017 March 29 at 19:36:58 PDT
