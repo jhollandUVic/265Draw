@@ -3,8 +3,9 @@
 ---
 ##	Application Concepts
 
-*	A Sierpinski carpet is a recursive fractal, where smaller copies of a square are drawn around the original square, then smaller squares around the copies, to an arbitrary level of recursion (see image below left).
-*	Scaling, rotating, and translating actions are applied to surround the finished Sierpinski carpet with copies of itself; a process here called tiling (see image below right).
+A Sierpinski carpet is a recursive fractal, where smaller copies of a square are drawn around the original square, then smaller squares around the copies, to an arbitrary level of recursion (see image below left).
+
+Scaling, rotating, and translating actions are applied to surround the finished Sierpinski carpet with copies of itself; a process here called tiling (see image below right).
 
 ![Example Carpets](carpets.png "Three levels of recursion on left; Two levels of recursion with rotate tiling on right.")
 
@@ -19,11 +20,15 @@
 
 ##	Application Usage
 
-*	`sierpinski.sh` is the application script which builds the Sierpinski carpets.
+*	`sierpinski.sh` is the application script which builds the Sierpinski carpets. Application commands are entered at the command line prompt.
 
-*	The form of the command-line invocation is:
+*	The form of the command line invocation is:
 
 	`bash sierpinski.sh recursion pattern colour-theme`
+	
+*	An example of a command to the application:
+
+	`bash sierpinski.sh 3 rotate tropical`
 
 * The application script accepts three parameters:
 
@@ -49,7 +54,7 @@
 
 *	Console log (all but first line is output):
 
-		==> Home: bash sierpinski.sh 3 carpet bold
+		==> bash sierpinski.sh 3 carpet bold
 		*
 		* Create a Recursive Sierpinski carpet line file with 3 Levels
 		python generate_carpet.py 3 bold > carpet_3.txt
@@ -65,47 +70,51 @@
 		*
 		* Create colour svg file from tiled carpet line file
 		python lines_to_svg_colour.py < carpet_3ST.txt > carpet_3ST.svg
+		*
+		* Display Information About Files Produced
+		ls -Farlt carpet_3*.svg
+		-rw-r--r--  1 Home  staff   246469 30 Mar 08:43 carpet_3.svg
+		-rw-r--r--  1 Home  staff  2220517 30 Mar 08:43 carpet_3ST.svg
 
 ##	Application Source:
 
-*	[`css_colours.txt`](https://github.com/jhollandUVic/265Draw/blob/master/css_colours.txt)
-	*	Supplied file with 148 css colour names
-	
-*	[`generate_carpet.py`](https://github.com/jhollandUVic/265Draw/blob/master/generate_carpet.py)
-	*	Based on `generate_tree.py`
-	*	The Sierpinski carpets algorithm was found at [http://lodev.org/cgtutor/sierpinski.html](http://lodev.org/cgtutor/sierpinski.html)
-	*	Makes a Sierpinski carpet lines file with the levels of recursion required.
-	
-	`python generate_carpet.py 2 > carpet_2.txt` where the `2` is the recursion level.
-	
-*	[`lines_to_svg_colour.py`](https://github.com/jhollandUVic/265Draw/blob/master/lines_to_svg_colour.py)
-	*	Supplied python module which translates lines created in `generate_carpet.py` and `transform_carpet.py` into SVG files.
-	
-*	[`Line_Point_colour.py`](https://github.com/jhollandUVic/265Draw/blob/master/Line_Point_colour.py)
-	*	Classes for lines and points, as supplied with assignment.
-	
-*	[`rotate_scale_translate.py`](https://github.com/jhollandUVic/265Draw/blob/master/rotate_scale_translate.py)
-	*	Supplied python module which performs transformations on a lines file.
-	
-	`python rotate_scale_translate.py -f .3333 < carpet_2.txt > carpet_2S.txt` scales by 1/3.
-*	[`sierpinksi_carpets.html`](https://github.com/jhollandUVic/265Draw/blob/master/sierpinski_carpets.html)
-	*	Users’ manual for the application.
+*	For a successful run, these files should be in the application directory:
 
-*	[`sierpinski.sh`](https://github.com/jhollandUVic/265Draw/blob/master/sierpinski.sh)
-	*	Bash script to exercise code developed to build carpets.
+	*	[`css_colours.txt`](https://github.com/jhollandUVic/265Draw/blob/master/css_colours.txt)
+		*	Text file with 148 css colour names. This file was supplied with lab materials.
 	
-*	[`transform_carpet.py`](https://github.com/jhollandUVic/265Draw/blob/master/transform_carpet.py)
-	* Based on `rings.py`.
-	*	Modifies an existing Sierpinski carpet, by rotating, scaling, translating, and cloning.
+	*	[`generate_carpet.py`](https://github.com/jhollandUVic/265Draw/blob/master/generate_carpet.py)
+		*	Based on `generate_tree.py`
+		*	The Sierpinski carpets algorithm was found at [http://lodev.org/cgtutor/sierpinski.html](http://lodev.org/cgtutor/sierpinski.html)
+		*	Makes a Sierpinski carpet lines file with the levels of recursion required.
 	
-	`python transform_carpet.py cross < carpet_2S.txt > carpet_2ST.txt` where `cross` is a pattern for transformation.
+		Example Usage: `python generate_carpet.py 2 > carpet_2.txt` where the `2` is the recursion level.
+	
+	*	[`lines_to_svg_colour.py`](https://github.com/jhollandUVic/265Draw/blob/master/lines_to_svg_colour.py)
+		*	Lab supplied python module which translates lines created in `generate_carpet.py` and `transform_carpet.py` into SVG files.
+	
+	*	[`Line_Point_colour.py`](https://github.com/jhollandUVic/265Draw/blob/master/Line_Point_colour.py)
+		*	Classes for lines and points, as supplied with lab assignment.
+	
+	*	[`rotate_scale_translate.py`](https://github.com/jhollandUVic/265Draw/blob/master/rotate_scale_translate.py)
+		*	Supplied python module which performs transformations on a lines file.
+	
+		Example Usage: `python rotate_scale_translate.py -f .3333 < carpet_2.txt > carpet_2S.txt` scales by 1/3.
+	*	[`sierpinksi_carpets.html`](https://github.com/jhollandUVic/265Draw/blob/master/sierpinski_carpets.html)
+		*	Users’ manual for the application.
 
-##	Bugs
-*	Can have colours on succeeding levels with too close a hue. If so, try again.
+	*	[`sierpinski.sh`](https://github.com/jhollandUVic/265Draw/blob/master/sierpinski.sh)
+		*	Bash script to exercise code developed to build carpets.
+	
+	*	[`transform_carpet.py`](https://github.com/jhollandUVic/265Draw/blob/master/transform_carpet.py)
+		* Based on `rings.py`.
+		*	Modifies an existing Sierpinski carpet, by rotating, scaling, translating, and cloning.
+	
+		Example Usage: `python transform_carpet.py cross < carpet_2S.txt > carpet_2ST.txt` where `cross` is a pattern for transformation.
 
 ##	References
 *	[Sierpinski Fractals](http://lodev.org/cgtutor/sierpinski.html)
 *	[SVG Tutorial](https://www.w3schools.com/graphics/svg_intro.asp)
 
 ---
-Last Update: 2017 March 29 at 16:30:20 PDT
+Last Update: 2017 March 30 at 05:48:22 PDT by `teamwin`
