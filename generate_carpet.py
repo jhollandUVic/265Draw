@@ -159,7 +159,7 @@ elif colour_theme == 'tropical':
 	theme_pattern = 'Pink|Teal|Turquoise|Purple|Fuchsia'
 elif colour_theme == 'bold':
 	theme_pattern= 'Dark|Deep'
-else: # Should never happen since we checked input above
+else:
 	print >> sys.stderr, ", ".join(map(str, cl_colour_themes))
 	sys.exit(1)
 	
@@ -172,5 +172,5 @@ this_colour = l_colours[0]
 prev_colour = l_colours[1]
 
 # Co-ordinates describe a square, upper left to bottom right.
-draw_carpet(recursion_steps,canvas, this_colour, prev_colour )
+draw_carpet(recursion_steps, -250, 250, 250, -250, this_colour, prev_colour )
 
