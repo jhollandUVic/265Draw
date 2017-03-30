@@ -93,16 +93,15 @@
 	
 	*	[`rotate_scale_translate.py`](https://github.com/jhollandUVic/265Draw/blob/master/rotate_scale_translate.py)
 	
-	*	[`sierpinksi_carpets.html`](https://github.com/jhollandUVic/265Draw/blob/master/sierpinski_carpets.html)
-		*	Users’ manual for the application.
-
 	*	[`sierpinski.sh`](https://github.com/jhollandUVic/265Draw/blob/master/sierpinski.sh)
 	
 	*	[`transform_carpet.py`](https://github.com/jhollandUVic/265Draw/blob/master/transform_carpet.py)
+## Documentation
+*	Refer to [`sierpinksi_carpets.html`](http://web.uvic.ca/~jholland/stu/sierpinski_carpets_user.html) for instructions on how to use the application.
 	
 ##	References
 *	[Sierpinski Fractals](http://lodev.org/cgtutor/sierpinski.html)
 *	[SVG Tutorial](https://www.w3schools.com/graphics/svg_intro.asp)
 
 ---
-Last Update: 2017 March 30 at 08:46:36 PDT by `teamwin`
+Last Update: 2017 March 30 at 09:34:00 PDT by `teamwin`
