@@ -159,7 +159,7 @@ elif colour_theme == 'tropical':
 	theme_pattern = 'Pink|Teal|Turquoise|Purple|Fuchsia'
 elif colour_theme == 'bold':
 	theme_pattern= 'Dark|Deep'
-else:
+else: # Should never happen since we checked input above
 	print >> sys.stderr, ", ".join(map(str, cl_colour_themes))
 	sys.exit(1)
 	
