@@ -15,10 +15,14 @@ reference
 	See <http://lodev.org/cgtutor/sierpinski.html>
 '''
 
-cl_colour_themes = [ 'bold', 'primary', 'secondary', 'tropical']
-f_colour_names = 'css_colours.txt'
-c_recursion_range = [0, 4]
-c_canvas_bounds = [-250, 250, 250, -250]
+cf_colour_names = 'css_colours.txt'
+cl_recursion_range = [0, 4]
+cl_canvas_bounds = [-250, 250, 250, -250]
+cd_colour_themes = {'primary':'Red|Blue|Yellow',
+					'secondary':'Orange|Purple|Green',
+					'bold':'Dark|Deep',
+					'tropical':'Pink|Teal|Turquoise|Purple|Fuchsia'
+					}
 
 '''
 purpose
@@ -133,9 +137,9 @@ try:
 except ValueError:
 	print >> sys.stderr, 'Value Error: ' + sys.argv[0] + ' Supply recursion steps as integer'
 	sys.exit(3)
-if not ( c_recursion_range[0] <= recursion_steps <= c_recursion_range[1] ):
+if not ( cl_recursion_range[0] <= recursion_steps <= cl_recursion_range[1] ):
 	print >> sys.stderr, 'Values: ' + sys.argv[0] + ' Recursion steps out of range ' \
-			+ str(c_recursion_range[0]) + ' to ' + str(c_recursion_range[1])
+			+ str(cl_recursion_range[0]) + ' to ' + str(cl_recursion_range[1])
 	sys.exit(4)
 
 try:
@@ -144,27 +148,17 @@ except ValueError:
 	print >> sys.stderr, 'Value Error: ' + sys.argv[0] + ' Supply colour theme as string'
 	sys.exit(5)
 
-if colour_theme not in cl_colour_themes:
+if colour_theme not in cd_colour_themes:
 	print >> sys.stderr, 'Values: ' + sys.argv[0] + ' Supply colour theme from:',
-	print >> sys.stderr, ", ".join(map(str, cl_colour_themes))
+	print >> sys.stderr, ", ".join(map(str, cd_colour_themes))
 	sys.exit(6)
 
 # Load valid css colours into list
-fh_css_colour_names = open(f_colour_names, 'r')
+fh_css_colour_names = open(cf_colour_names, 'r')
 l_colour_names = load_line_file(fh_css_colour_names)
 fh_css_colour_names.close
 
-if colour_theme == 'primary':
-	theme_pattern = 'Red|Blue|Yellow'
-if colour_theme == 'secondary':
-	theme_pattern = 'Orange|Purple|Green'
-elif colour_theme == 'tropical':
-	theme_pattern = 'Pink|Teal|Turquoise|Purple|Fuchsia'
-elif colour_theme == 'bold':
-	theme_pattern= 'Dark|Deep'
-else: # Should never happen since we checked input above
-	print >> sys.stderr, ", ".join(map(str, cl_colour_themes))
-	sys.exit(7)
+theme_pattern = cd_colour_themes[colour_theme]
 	
 # Build a random list of colours chosen according to theme specified
 l_colours = filter(lambda x: re.search(theme_pattern, x), l_colour_names)
@@ -175,6 +169,6 @@ this_colour = l_colours[0]
 prev_colour = l_colours[1]
 
 # Co-ordinates describe a square, upper left to bottom right.
-draw_carpet(recursion_steps, c_canvas_bounds[0], c_canvas_bounds[1],
-			c_canvas_bounds[2], c_canvas_bounds[3], this_colour, prev_colour)
+draw_carpet(recursion_steps, cl_canvas_bounds[0], cl_canvas_bounds[1],
+			cl_canvas_bounds[2], cl_canvas_bounds[3], this_colour, prev_colour)
 
