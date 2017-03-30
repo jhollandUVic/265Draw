@@ -11,6 +11,12 @@ if ! [[ $1 =~ $re ]] ; then
 	echo "$0: usage: sierpinski recursions '$1' not numeric"
 	exit 1
 fi
+
+if [[ $1 -lt 0 || $1 -gt 4 ]] ; then
+	echo "$0: usage: sierpinski recursions '$1' out of range 0 to 4"
+	exit 1
+fi
+
 recursions=$1
 
 if [[ $2 == carpet ]] ; then
