@@ -72,7 +72,7 @@ echo "${CMD}"
 eval "${CMD}"
 rc=$?; if [[ $rc != 0 ]]; then exit $rc; fi
 echo	"*"
-echo "* Display Information About Files Produced"
+echo "* Display information about files produced"
 CMD="ls -Farlt carpet_${recursions}*.svg"
 echo "${CMD}"
 eval "${CMD}"
