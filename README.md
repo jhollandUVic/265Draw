@@ -6,6 +6,8 @@
 *	A Sierpinski carpet is a recursive fractal, where smaller copies of a square are drawn around the original square, then smaller squares around the copies, to an arbitrary level of recursion (see image below left).
 *	Scaling, rotating, and translating actions are applied to surround the finished Sierpinski carpet with copies of itself; a process here called tiling (see image below right).
 
+![Example Carpets](carpets.png "Three levels of recursion on left; Two levels of recursion with rotate tiling on right.")
+
 ###	Recursion Levels
 *	In this application, recursion levels from 0 to 4 are supported. 0 is no recursion; 4 is the practical upper limit given canvas resolution, file size, and drawing speed.
 
