@@ -6,6 +6,7 @@ import re
 
 CANVAS_HEIGHT = 500
 CANVAS_WIDTH = 500
+DEFAULT_COLOUR = "Black"
 
 '''
 purpose
@@ -120,7 +121,7 @@ def parse_line(line):
 			if colour in L_css_colours:
 				L.append(colour)
 			else:
-				L.append('Black')
+				L.append(DEFAULT_COLOUR)
 			return L
 		else:
 			return offset
@@ -128,7 +129,8 @@ def parse_line(line):
 	x = re.compile('$')
 	m = x.match(line,offset)
 	if m:
-		L.append('Blub')
+#		L.append('Blub') # 'Blub'? Looks like a bug
+		L.append(DEFAULT_COLOUR) # JEH 2017 April 02 at 18:20:34 PDT
 		return L
 	else:
 		return offset
