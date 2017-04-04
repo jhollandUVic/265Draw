@@ -79,4 +79,21 @@
 		-rw-r--r--  1 Home  staff   246469 30 Mar 08:43 carpet_3.svg
 		-rw-r--r--  1 Home  staff  2220517 30 Mar 08:43 carpet_3ST.svg
 
+##	Application Source
+
+*	For a successful run, these files should be in the application directory:
+
+	*	[`css_colours.txt`](https://github.com/jhollandUVic/265Draw/blob/master/css_colours.txt)
+	
+	*	[`generate_carpet.py`](https://github.com/jhollandUVic/265Draw/blob/master/generate_carpet.py)
+	
+	*	[`lines_to_svg_colour.py`](https://github.com/jhollandUVic/265Draw/blob/master/lines_to_svg_colour.py)
+	
+	*	[`Line_Point_colour.py`](https://github.com/jhollandUVic/265Draw/blob/master/Line_Point_colour.py)
+	
+	*	[`rotate_scale_translate.py`](https://github.com/jhollandUVic/265Draw/blob/master/rotate_scale_translate.py)
+	
+	*	[`sierpinski.sh`](https://github.com/jhollandUVic/265Draw/blob/master/sierpinski.sh)
+	
+	*	[`transform_carpet.py`](https://github.com/jhollandUVic/265Draw/blob/master/transform_carpet.py)
 
