@@ -3,8 +3,10 @@
 ---
 ##	Application Concepts
 
-*	A Sierpinski carpet is a recursive fractal, where smaller copies of a square are drawn around the original square, then smaller squares around the copies, to an arbitrary level of recursion (see image below left).
-*	Scaling, rotating, and translating actions are applied to surround the finished Sierpinski carpet with copies of itself; a process here called tiling (see image below right).
+*	A Sierpinski carpet is a recursive fractal. Consider a Sierpinski carpet as a square where more and more parts of the carpet are removed as the recursion progresses. As the number of recursions approaches infinity, the area of the carpet left approaches zero.
+*	To start, we divide the original square carpet into nine equal sub-squares. Remove the central sub-square.
+*	For the next recursion, divide each of the remaining eight squares into nine equal sub-squares and remove each central sub-square. Repeat the process for each recursion.
+*	For purposes of the demonstration application, scaling, rotating, and translating actions are then applied to surround the finished Sierpinski carpet with copies of itself; a process here called tiling (see image below right).
 
 ![Example Carpets](carpets.png "Three levels of recursion on left; Two levels of recursion with rotate tiling on right.")
 
